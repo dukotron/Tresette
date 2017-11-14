@@ -17,11 +17,12 @@ public class PlayerNameInputField : MonoBehaviour {
 			}
 		}
 
-		PhotonNetwork.playerName = defaultName;
+		PhotonNetwork.playerName = defaultName + "#" + System.DateTime.Now.Minute + System.DateTime.Now.Second + Random.Range(1, 999);
 	}
 
 	public void SetPlayerName (string value) {
-		PhotonNetwork.playerName = value;
-		PlayerPrefs.SetString (playerNamePrefKey, value);
+        string temp = value + "#" + System.DateTime.Now.Minute + System.DateTime.Now.Second + Random.Range(1, 999);
+        PhotonNetwork.playerName = temp;
+		PlayerPrefs.SetString (playerNamePrefKey, temp.Split('#')[0]);
 	} 
 }
